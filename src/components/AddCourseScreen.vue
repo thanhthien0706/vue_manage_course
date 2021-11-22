@@ -114,10 +114,10 @@ export default {
       this.error = [];
 
       if (!this.inforCourse.nameCourse.length) {
-        this.error.push("Tên khóa học không trống");
+        this.error.push("Tên khóa học không được trống");
       }
       if (!this.inforCourse.linkCourse.length) {
-        this.error.push("Link khóa học không trống");
+        this.error.push("Link khóa học không được trống");
       }
 
       if (this.error.length) {
@@ -161,7 +161,7 @@ export default {
 
     onNhayLan2() {
       this.txtNotification =
-        "Tôi nghĩ bạn chưa chắc đâu suy nghĩ đi. Tôi sẽ mở lại sau "+this.viewCount+"s 😁😁😁😁";
+        "Tôi nghĩ bạn chưa chắc đâu. Suy nghĩ đi. Tôi sẽ mở lại sau "+this.viewCount+"s 😁😁😁😁";
       this.isViewCount = true;
       this.isDisableBtnNotification = true;
       let timeCount = setInterval(() => {

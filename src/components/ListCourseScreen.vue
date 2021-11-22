@@ -9,7 +9,7 @@
         Xóa tất cả
       </button>
     </div>
-    <p v-if="isCheck">Bạn chưa có xóa học nào</p>
+    <p v-if="isCheck">Bạn chưa có Khóa học nào</p>
     <ul class="course-list" v-if="isDelete">
       <li
         class="course-list-item"
