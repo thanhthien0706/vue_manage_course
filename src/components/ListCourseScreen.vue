@@ -1,12 +1,16 @@
 <template>
   <div id="screen-list-course">
     <div class="box_btn_all_delete">
-      <button class="btn_delete_all" @click="deleteAllCourse">
+      <button
+        class="btn_delete_all"
+        v-if="isCheckDeleteAll"
+        @click="deleteAllCourse"
+      >
         Xóa tất cả
       </button>
     </div>
-
-    <ul class="course-list">
+    <p v-if="isCheck">Bạn chưa có xóa học nào</p>
+    <ul class="course-list" v-if="isDelete">
       <li
         class="course-list-item"
         v-for="(item, index) in computedListCourse"
@@ -36,6 +40,9 @@ export default {
     return {
       // dataListCourse: this.showListCourses(),
       dataListCourse: [],
+      isCheck: false,
+      isCheckDeleteAll: true,
+      isDelete: false,
     };
   },
   beforeMount() {
@@ -44,10 +51,16 @@ export default {
   methods: {
     showListCourses() {
       if (localStorage.getItem("listCourse") != null) {
+        this.isDelete = true;
         let data = JSON.parse(localStorage.getItem("listCourse"));
-        // data.reverse();
-
+        if (data == "") {
+          this.isCheck = true;
+          this.isCheckDeleteAll = false;
+        }
         this.dataListCourse = data;
+      } else {
+        this.isCheckDeleteAll = false;
+        this.isCheck = true;
       }
     },
 
@@ -63,6 +76,7 @@ export default {
     },
     deleteAllCourse() {
       localStorage.removeItem("listCourse");
+      this.isDelete = false;
       this.showListCourses();
     },
   },
