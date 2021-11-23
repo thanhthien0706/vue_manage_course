@@ -37,12 +37,12 @@ export default {
         {
           id: 1,
           component: ListCourseScreen,
-          title: "List Course",
+          title: "Danh sách khóa học",
         },
         {
           id: 2,
           component: AddCourseScreen,
-          title: "Add Course",
+          title: "Thêm khóa học",
         },
       ],
     };

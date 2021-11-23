@@ -85,6 +85,7 @@ export default {
     return {
       txtNotification: "",
       viewCount: 5,
+      CountNhay: 0,
       isViewCount: false,
       btnConfirm: {
         text: "oke",
@@ -126,7 +127,13 @@ export default {
         this.isErrorName = true;
       } else {
         this.isNotification = true;
-        this.onNhayLan1();
+
+        if (this.CountNhay > 0) {
+          this.onKhongNhay();
+        } else {
+          this.onNhayLan1();
+          this.CountNhay++;
+        }
       }
     },
 
@@ -161,7 +168,9 @@ export default {
 
     onNhayLan2() {
       this.txtNotification =
-        "Tôi nghĩ bạn chưa chắc đâu. Suy nghĩ đi. Tôi sẽ mở lại sau "+this.viewCount+"s 😁😁😁😁";
+        "Tôi nghĩ bạn chưa chắc đâu. Suy nghĩ đi. Tôi sẽ mở lại sau " +
+        this.viewCount +
+        "s 😁😁😁😁";
       this.isViewCount = true;
       this.isDisableBtnNotification = true;
       let timeCount = setInterval(() => {
@@ -172,6 +181,7 @@ export default {
           this.isDisableBtnNotification = false;
           this.isViewCount = false;
           this.btnConfirm.event = this.onKhongNhay;
+          this.countNhay++;
         }
       }, 1000);
     },
@@ -210,6 +220,9 @@ export default {
     listenEventNotificationCancel() {
       return this.btnCancel.event;
     },
+    // eventChangeFirst(){
+    //   return this.btn
+    // }
   },
 };
 </script>
