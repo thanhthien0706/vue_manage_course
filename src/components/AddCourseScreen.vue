@@ -37,7 +37,7 @@
       <div class="form-group">
         <input
           type="submit"
-          @click="onSubmitCourse"
+          @click="onSubmitCourse "
           class="btn_submit"
           id="addButton"
           value="Thêm"
@@ -85,7 +85,7 @@ export default {
     return {
       txtNotification: "",
       viewCount: 5,
-      CountNhay: 0,
+      // changeCount:0,
       isViewCount: false,
       btnConfirm: {
         text: "oke",
@@ -127,13 +127,7 @@ export default {
         this.isErrorName = true;
       } else {
         this.isNotification = true;
-
-        if (this.CountNhay > 0) {
-          this.onKhongNhay();
-        } else {
-          this.onNhayLan1();
-          this.CountNhay++;
-        }
+        this.onNhayLan1();
       }
     },
 
@@ -162,15 +156,14 @@ export default {
       this.txtNotification = "Bạn có chắc muốn thêm khóa học ??? 😏😏😏😏";
       this.btnConfirm.text = "Chắc😗";
       this.btnCancel.status = true;
+      this.btnConfirm.status = true;
       this.submitBtn = true;
       this.btnConfirm.event = this.onNhayLan2;
     },
 
     onNhayLan2() {
       this.txtNotification =
-        "Tôi nghĩ bạn chưa chắc đâu. Suy nghĩ đi. Tôi sẽ mở lại sau " +
-        this.viewCount +
-        "s 😁😁😁😁";
+        "Tôi nghĩ bạn chưa chắc đâu. Suy nghĩ đi. Tôi sẽ mở lại sau "+this.viewCount+"s 😁😁😁😁";
       this.isViewCount = true;
       this.isDisableBtnNotification = true;
       let timeCount = setInterval(() => {
@@ -186,6 +179,7 @@ export default {
       }, 1000);
     },
     onKhongNhay() {
+      this.viewCount=5
       if (localStorage.getItem("listCourse") == null) {
         localStorage.setItem("listCourse", "[]");
       }
@@ -208,8 +202,8 @@ export default {
       setTimeout(() => {
         this.isNotification = false;
         this.submitBtn = false;
-        this.btnConfirm.status = true;
-        this.btnCancel.status = true;
+        // this.btnConfirm.status = true;
+        // this.btnCancel.status = true;
       }, 2000);
     },
   },
